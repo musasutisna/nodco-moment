@@ -1,0 +1,26 @@
+{
+  "name": "@musasutisna/nodco-moment",
+  "version": "1.0.0",
+  "description": "make easier configuration nodejs configuration intergration with moment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musasutisna/nodco-moment.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Musa Sutisna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/musasutisna/nodco-moment/issues"
+  },
+  "homepage": "https://github.com/musasutisna/nodco-moment#readme",
+  "dependencies": {
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46"
+  }
+}
