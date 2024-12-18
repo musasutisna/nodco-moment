@@ -1,4 +1,4 @@
-<h1 align="center">Nodejs Config Logging</h1>
+<h1 align="center">Nodejs Config moment</h1>
 
 Nodejs config api is package to make easier configuration nodejs configuration intergration with moment.
 
@@ -26,12 +26,19 @@ nodcoMomentConfig(
 |:--|:--|:--|
 | config | object | Moment pre defined configuration items. |
 | m | function | Moment instance. |
+| setTimezone | function | Set default timezone. |
 | utc | function | Identify datetime string in utc timezone then configurable timezone. |
 | format | function | Formating datetime moment with config. |
 | formatm | function | Formating datetime string with config. |
 | formatutc | function | Formating datetime utc string with config. |
 
+<br/>
+
 ```js
+setTimezone(
+  timezone // string, IANA Time Zone
+)
+
 utc(
   datetime, // string, datetime will be identify
   utcOffset // number, utcoffset config
@@ -39,16 +46,19 @@ utc(
 
 format(
   datetime, // object, datetime in moment
-  format // string, config datetime format or moment datetime format
+  format, // string, config datetime format or moment datetime format
+  localeId // string, localization id
 )
 
 formatm(
   datetime, // string, datetime will be identify
-  format // string, config datetime format or moment datetime format
+  format, // string, config datetime format or moment datetime format
+  localeId // string, localization id
 )
 
 formatutc(
   datetime, // string, datetime utc will be identify
-  format // string, config datetime format or moment datetime format
+  format, // string, config datetime format or moment datetime format
+  localeId // string, localization id
 )
 ```

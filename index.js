@@ -1,11 +1,10 @@
 const moment = require('moment');
 const momentTimezone = require('moment-timezone');
 
-// set default timezone
-moment.tz.setDefault('UTC');
-
 const config =  {
+  timezone: 'UTC',
   utcOffset: 0 * 60,
+  localeId: 'en',
   format: {
     date: 'D MMMM YYYY',
     datetime: 'D MMMM YYYY HH:mm',
@@ -15,29 +14,75 @@ const config =  {
   }
 };
 
+/**
+ * Default moment
+ */
 const m = moment;
 
-const utc = function (d, utcOffset) {
+/**
+ * Set default timezone.
+ *
+ * @param   string    IANA time zone
+ * @return  void
+ */
+function setTimezone(timezone) {
+  moment.tz.setDefault(timezone || config.timezone);
+}
+
+/**
+ * Identify datetime string in utc timezone then configurable timezone.
+ *
+ * @param   string    datetime will be identify
+ * @param   number    utcoffset config
+ * @return  object
+ */
+const utc = function (d, u) {
   return moment(d)
     .utc()
-    .utcOffset(utcOffset || config.utcOffset)
+    .utcOffset(u || config.utcOffset);
 };
 
-const format = function (d, f) {
-  return d.format(config.format[f] || f)
+/**
+ * Formating datetime moment with config.
+ *
+ * @param   string    datetime in moment
+ * @param   string    config datetime format or moment datetime format
+ * @param   string    localization id
+ * @return  string
+ */
+const format = function (d, f, l) {
+  return d.locale(l || config.localeId).format(config.format[f] || f);
 };
 
-const formatm = function (d, f) {
-  return format(m(d), f)
+/**
+ * Formating datetime string with config.
+ *
+ * @param   string    datetime will be identify
+ * @param   string    config datetime format or moment datetime format
+ * @param   string    localization id
+ * @return  string
+ */
+const formatm = function (d, f, l) {
+  return format(m(d), f, l);
 };
 
-const formatutc = function (d, f, utcOffset) {
-  return format(utc(d, utcOffset), f)
+/**
+ * Formating datetime utc string with config.
+ *
+ * @param   string    datetime utc will be identify
+ * @param   string    config datetime format or moment datetime format
+ * @param   string    localization id
+ * @param   number    utcoffset config
+ * @return  string
+ */
+const formatutc = function (d, f, l, u) {
+  return format(utc(d, u), f, l);
 };
 
 module.exports = {
   config,
   m,
+  setTimezone,
   utc,
   format,
   formatm,
